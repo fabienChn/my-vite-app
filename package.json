@@ -8,7 +8,11 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "d:dev": "docker-compose up",
+    "d:test": "docker-compose -f docker-compose.test.yml run --rm test-vite-react-app yarn test",
+    "d:test:watch": "yarn d:test --watchAll",
+    "d:test:coverage": "yarn d:test --coverage"
   },
   "dependencies": {
     "react": "^18.2.0",

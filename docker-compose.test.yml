@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  test-vite-react-app:
+    build:
+      context: .
+      args:
+        NODE_ENV: test
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - .env.test
