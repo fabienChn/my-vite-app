@@ -1,27 +1,31 @@
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom'
 import App from './App';
 
 it.todo('renders Vite and React logos with correct links', () => {
-  // const { getByAltText } = render(<App />);
-  // const viteLogo = getByAltText('Vite logo') as HTMLImageElement;
-  // const reactLogo = getByAltText('React logo') as HTMLImageElement;
+  const { getByAltText } = render(<App />);
+  const viteLogo = getByAltText('Vite logo');
+  const reactLogo = getByAltText('React logo');
 
-  // expect(viteLogo.parentElement?.href).toBe('https://vitejs.dev');
-  // expect(reactLogo.parentElement?.href).toBe('https://react.dev');
+  const viteLink = (viteLogo.parentElement as HTMLAnchorElement).href;
+  const reactLink = (reactLogo.parentElement  as HTMLAnchorElement).href;
+
+  expect(viteLink).toBe('https://vitejs.dev');
+  expect(reactLink).toBe('https://react.dev');
 });
 
 it('renders "Vite + React" heading', () => {
   const { getByText } = render(<App />);
   const heading = getByText('Vite + React');
 
-  expect(heading).toBeTruthy();
+  expect(heading).toBeInTheDocument();
 });
 
 it('renders Counter component', () => {
   const { getByText } = render(<App />);
   const counter = getByText('count is 0');
 
-  expect(counter).toBeTruthy();
+  expect(counter).toBeInTheDocument();
 });
 
 test('increments count when Counter button is clicked', () => {
@@ -37,12 +41,12 @@ it('renders edit message', () => {
   const { getByText } = render(<App />);
   const editMessage = getByText('Edit src/App.tsx and save to test HMR');
 
-  expect(editMessage).toBeTruthy();
+  expect(editMessage).toBeInTheDocument();
 });
 
 it('renders "Click on the Vite and React logos to learn more" message', () => {
   const { getByText } = render(<App />);
   const learnMoreMessage = getByText('Click on the Vite and React logos to learn more');
 
-  expect(learnMoreMessage).toBeTruthy();
+  expect(learnMoreMessage).toBeInTheDocument();
 });
